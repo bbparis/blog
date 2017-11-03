@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
     
+    http_basic_authenticate_with name: "demo", password: "demo",
+    expect: [:index, :show]
     
     def index
         @articles = Article.all
@@ -38,7 +40,7 @@ class ArticlesController < ApplicationController
     
     def destroy
         @article = Article.find(params[:id])
-        @article.destroy
+        @article.destroy 
         
         redirect_to articles_path
     end
